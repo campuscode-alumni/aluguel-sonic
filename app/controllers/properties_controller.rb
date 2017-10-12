@@ -9,10 +9,14 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    property = Property.new(property_params)
-    property.save
-    flash[:message] = 'Imóvel cadastrado com sucesso!'
-    redirect_to property
+    @property = Property.new(property_params)
+    if @property.save
+      flash[:message] = 'Imóvel cadastrado com sucesso!'
+      redirect_to @property
+    else
+      flash[:error] = 'Você deve preencher os campos obrigatórios'
+      render :new
+    end
   end
 
   private

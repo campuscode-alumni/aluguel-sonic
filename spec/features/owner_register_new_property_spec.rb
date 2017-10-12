@@ -3,7 +3,6 @@ require 'rails_helper'
 feature 'owner register new property' do
   scenario 'successfuly' do
     visit root_path
-
     click_on 'Anunciar um imóvel'
 
     fill_in 'Nome', with: 'Casa de frente pro mar'
@@ -36,7 +35,26 @@ feature 'owner register new property' do
     expect(page).to have_xpath("//img[contains(@src,'/praia.jpg')]")
 
     expect(page).to have_css('div.success', text:'Imóvel cadastrado com sucesso!')
+  end
 
+  scenario 'and must fill all required fields' do
+    visit root_path
+    click_on 'Anunciar um imóvel'
 
+    fill_in 'Nome', with: ''
+    fill_in 'Local', with: ''
+    fill_in 'Tamanho (m2)', with: '150'
+    fill_in 'Tipo do Imóvel', with: ''
+    fill_in 'Quantidade de quartos', with: 4
+    fill_in 'Máximo de pessoas', with: 8
+    fill_in 'Mínimo de dias para locação', with: 2
+    fill_in 'Máximo de dias para locação', with: 8
+    fill_in 'Valor padrão da diária', with: ''
+    fill_in 'Foto', with: ''
+    fill_in 'Descrição', with: ''
+    fill_in 'Regras de uso', with: 'Não pode cachorro'
+    click_on 'Enviar'
+
+    expect(page).to have_css('div.error', text:'Você deve preencher os campos obrigatórios')
   end
 end
