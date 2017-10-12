@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011004513) do
+ActiveRecord::Schema.define(version: 20171011230331) do
 
   create_table "properties", force: :cascade do |t|
-    t.string "location"
     t.string "area"
     t.string "title"
     t.text "description"
@@ -26,6 +25,8 @@ ActiveRecord::Schema.define(version: 20171011004513) do
     t.text "usage_rules"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "property_location"
+    t.string "property_type"
   end
 
 end
