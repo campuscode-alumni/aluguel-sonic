@@ -1,5 +1,8 @@
+
 <%= form_tag("/search", method: "get") do %>
   <%= label_tag(:q, "Buscar") %>
   <%= text_field_tag(:q) %>
   <%= submit_tag("Buscar") %>
 <% end %>
+
+<%= link_to 'Anunciar um imóvel', new_property_path %>
