@@ -5,7 +5,6 @@ class HomeController < ApplicationController
   end
 
   def search
-     @properties_search = params[:property_type]
-     @properties = Property.where "property_type like ?", "%#{@properties_search}%"
+     @properties = Property.where("property_type like ? or property_location like ?", params[:q], params[:q])
   end
 end

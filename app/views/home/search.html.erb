@@ -1,6 +1,10 @@
-<h1>Você buscou por <%= @properties_search %></h1>
+<h1>Você buscou por <%= params[:q] %></h1>
 
-<%= @properties.each do |property| %>
+<% if @properties.empty? %>
+  <p>Nenhum imóvel encontrado</p>
+<% end %>
+
+<% @properties.each do |property| %>
   <h2><%= property.property_type %></h2>
     <dl>
       <dt>Título</dt>

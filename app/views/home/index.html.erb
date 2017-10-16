@@ -1,5 +1,5 @@
 <%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:property_type, "Buscar") %>
-  <%= text_field_tag(:property_type) %>
+  <%= label_tag(:q, "Buscar") %>
+  <%= text_field_tag(:q) %>
   <%= submit_tag("Buscar") %>
 <% end %>
