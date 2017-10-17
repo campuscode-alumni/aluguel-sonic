@@ -22,7 +22,7 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:location, :area, :title, :description,
+    params.require(:property).permit(:property_location, :area, :title, :description,
                                     :daily_rate, :rooms, :minimum_rent_days,
                                     :maximum_rent_days, :photo,
                                     :maximum_occupancy, :usage_rules,
