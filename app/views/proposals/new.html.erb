@@ -1,0 +1,19 @@
+<%= form_for([@property, @proposal]) do |f| %>
+  <legend>Formulário de envio de proposta</legend>
+  <%= f.label :user_name, 'Nome da pessoa' %>
+  <%= f.text_field :user_name %>
+  <%= f.label :email, 'Email' %>
+  <%= f.text_field :email %>
+  <%= f.label :start_date, 'Data inicio' %>
+  <%= f.text_field :start_date %>
+  <%= f.label :end_date, 'Data fim' %>
+  <%= f.text_field :end_date %>
+  <%= f.label :total_guests, 'Quantidade de pessoas' %>
+  <%= f.number_field :total_guests %>
+  <%= f.label :rent_purpouse, 'Proposito da Locação' %>
+  <%= f.text_area :rent_purpouse %>
+  <%= check_box_tag :agree_with_rules %>
+  <%= label_tag :agree_with_rules, 'Concordar com as regras' %>
+
+  <%= f.submit 'Enviar' %>
+<% end %>

@@ -13,6 +13,8 @@
 <h3>Foto do local</h3>
 <%= image_tag @property.photo %>
 
+<%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
+
 <% if flash[:message] %>
   <div class="success"><%= flash[:message] %></div>
 <% end %>
