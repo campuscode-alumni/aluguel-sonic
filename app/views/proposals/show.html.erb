@@ -7,7 +7,7 @@
 <p>Data inicio: <%= @proposal.start_date %></p>
 <p>Data fim: <%= @proposal.end_date %></p>
 <p>Quantidade de pessoas: <%= @proposal.total_guests %></p>
-<p>Proposito da Locação: <%= @proposal.rent_purpouse %></p>
+<p>Proposito da Locação: <%= @proposal.rent_purpose %></p>
 <p>Valor total: <%= number_to_currency(@proposal.total_amount, unit: "R$ ", separator: ",", delimiter: "") %></p>
-<h1>TA ERRADO</h1>
+
 <%= link_to 'Voltar', root_path %>

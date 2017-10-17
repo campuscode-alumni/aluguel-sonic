@@ -1,3 +1,8 @@
+<% if @proposal.errors.any? %>
+  <% @proposal.errors.full_messages.each do |msg| %>
+    <div class="error"><%= msg %></div>
+  <% end %>
+<% end %>
 <%= form_for([@property, @proposal]) do |f| %>
   <legend>Formulário de envio de proposta</legend>
   <%= f.label :user_name, 'Nome da pessoa' %>
@@ -10,10 +15,10 @@
   <%= f.text_field :end_date %>
   <%= f.label :total_guests, 'Quantidade de pessoas' %>
   <%= f.number_field :total_guests %>
-  <%= f.label :rent_purpouse, 'Proposito da Locação' %>
-  <%= f.text_area :rent_purpouse %>
-  <%= check_box_tag :agree_with_rules %>
-  <%= label_tag :agree_with_rules, 'Concordar com as regras' %>
+  <%= f.label :rent_purpose, 'Proposito da Locação' %>
+  <%= f.text_area :rent_purpose %>
+  <%= f.check_box :agree_with_rules %>
+  <%= f.label :agree_with_rules, 'Concordar com as regras' %>
 
   <%= f.submit 'Enviar' %>
 <% end %>

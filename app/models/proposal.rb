@@ -5,6 +5,12 @@ class Proposal < ApplicationRecord
 
   before_save :calculate_total_amount
 
+  validates :user_name, :email, :start_date, :end_date, :total_guests,
+            :rent_purpose, presence: {message: 'Você deve preencher todos os campos'}
+  validates :agree_with_rules,
+            acceptance: {message: 'Você deve estar de acordo com as regras'}
+
+
   private
 
   def calculate_total_amount
