@@ -1,6 +1,6 @@
 <h1><%= @property.title %></h1>
 <p>Descrição: <%= @property.description %></p>
-<p>Localidade: <%= @property.location %></p>
+<p>Localidade: <%= @property.property_location %></p>
 <h2>Detalhes</h2>
 <p>Tamanho: <%= @property.area %> m2</p>
 <p>Tipo do imóvel: <%= @property.property_type %></p>
@@ -12,6 +12,8 @@
 <p>Regras de uso: <%= @property.usage_rules %></p>
 <h3>Foto do local</h3>
 <%= image_tag @property.photo %>
+
+<%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
 
 <% if flash[:message] %>
   <div class="success"><%= flash[:message] %></div>
