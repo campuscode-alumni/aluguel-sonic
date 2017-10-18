@@ -5,4 +5,17 @@
   <%= submit_tag("Buscar") %>
 <% end %>
 
+<h1>Aluga temporada</h1>
+<p class="lead">O melhor site para alugar imóveis da internet</p>
+
 <%= link_to 'Anunciar um imóvel', new_property_path %>
+
+<h2>Imóveis:</h2>
+<% if @properties.any? %>
+  <% @properties.each do |property| %>
+    <%= render partial: 'shared/property_detail',
+               locals: {property: property} %>
+  <% end %>
+<% else %>
+  <p>Nenhuma propriedade encontrada</p>
+<% end %>

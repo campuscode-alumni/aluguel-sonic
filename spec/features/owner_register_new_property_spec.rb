@@ -32,7 +32,7 @@ feature 'owner register new property' do
     expect(page).to have_css('p', text: 'Valor padrão da diária: R$ 200,00')
     expect(page).to have_css('p', text: 'Regras de uso: Não pode cachorro')
     expect(page).to have_css('h3', text: 'Foto do local')
-    expect(page).to have_xpath("//img[contains(@src,'/praia.jpg')]")
+    expect(page).to have_content('/praia.jpg')
 
     expect(page).to have_css('div.success', text:'Imóvel cadastrado com sucesso!')
   end
