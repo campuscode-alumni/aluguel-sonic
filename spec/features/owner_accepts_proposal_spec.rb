@@ -2,29 +2,49 @@ require 'rails_helper'
 
 feature 'owner accepts proposal' do
   scenario 'successfuly' do
+    property = Property.create(property_location: 'Rio de Janeiro',
+                               area: '100m2', title: 'Casa na praia',
+                               description: 'Casa na praia em copacabana',
+                               daily_rate: 200, rooms: 5,
+                               minimum_rent_days: 2, maximum_rent_days: 5,
+                               photo: 'casa.png', maximum_occupancy: 5,
+                               usage_rules: 'sem animais',
+                               property_type: 'praia')
 
-    proposal1 = Proposal.create(start_date: '16/10/2017',
+    proposal1 = Proposal.create(user_name: 'Nailson_Ita',
+                                email: 'nailson.ita@ita.com',
+                                start_date: '16/10/2017',
                                 end_date: '19/10/2017',
+                                rent_purpose: 'Casamento',
+                                agree_with_rules: true,
                                 total_amount: 600,
-                                total_guets: 5,
+                                total_guests: 5,
                                 status: 'pending',
                                 property: property)
 
-    proposal2 = Proposal.create(start_date: '16/10/2017',
+    proposal2 = Proposal.create(user_name: 'Nailson_Ita',
+                                email: 'nailson.ita@ita.com',
+                                start_date: '16/10/2017',
                                 end_date: '19/10/2017',
+                                rent_purpose: 'Casamento',
+                                agree_with_rules: true,
                                 total_amount: 600,
-                                total_guets: 10,
+                                total_guests: 10,
                                 status: 'pending',
                                 property: property)
 
-    proposal3 = Proposal.create(start_date: '16/10/2017',
+    proposal3 = Proposal.create(user_name: 'Nailson_Ita',
+                                email: 'nailson.ita@ita.com',
+                                start_date: '16/10/2017',
                                 end_date: '19/10/2017',
+                                rent_purpose: 'Casamento',
+                                agree_with_rules: true,
                                 total_amount: 600,
-                                total_guets: 4,
+                                total_guests: 4,
                                 status: 'pending',
                                 property: property)
 
-    visit property_proposals_path(proposal2)
+    visit proposal_path(proposal2)
     click_on 'Aceitar proposta'
 
     expect(page).to have_content('Proposta aceita')

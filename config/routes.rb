@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get "/search" => "home#search"
   resources :properties, only: [:show, :new, :create] do
-    resources :proposals, shallow: true
+    resources :proposals, shallow: true do
+      post "accept", on: :member 
+    end
   end
 end
