@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'owner accepts proposal' do
-  scenario 'successfuly' do
+  scenario 'accepted one proposal and recuse all others' do
     property = Property.create(property_location: 'Rio de Janeiro',
                                area: '100m2', title: 'Casa na praia',
                                description: 'Casa na praia em copacabana',
@@ -29,7 +29,7 @@ feature 'owner accepts proposal' do
                                 rent_purpose: 'Casamento',
                                 agree_with_rules: true,
                                 total_amount: 600,
-                                total_guests: 10,
+                                total_guests: 5,
                                 status: 'pending',
                                 property: property)
 
@@ -46,15 +46,20 @@ feature 'owner accepts proposal' do
 
     visit proposal_path(proposal2)
     click_on 'Aceitar proposta'
+    proposal1.reload
+    proposal3.reload
 
     expect(page).to have_content('Proposta aceita')
-    expect(page).to have_css('h2', text: 'Detalhes da proposta aceita')
-    expect(page).to have_css('dd', text: proposal2.property.name)
-    expect(page).to have_css('dd', text: '16/10/2017')
-    expect(page).to have_css('dd', text: '19/10/2017')
-    expect(page).to have_css('dd', text: 600)
-    expect(page).to have_css('dd', text: 5)
-    expect(page).to have_css('dd', text: 'accepts')
+    expect(page).to have_css('h1', text: 'Detalhes da proposta')
+    expect(page).to have_css('h2', text: proposal2.property.title)
+    expect(page).to have_css('p', text: '16/10/2017')
+    expect(page).to have_css('p', text: '19/10/2017')
+    expect(page).to have_css('p', text: 600)
+    expect(page).to have_css('p', text: 5)
+    expect(page).to have_css('p', text: 'accepted')
+
+    expect(proposal1.status).to eq("canceled")
+    expect(proposal3.status).to eq("canceled")
 
   end
 end

@@ -1,9 +1,5 @@
 class ProposalsController < ApplicationController
 
-  def index
-    #code
-  end
-
   def new
     @property = Property.find(params[:property_id])
     @proposal = Proposal.new
@@ -22,6 +18,19 @@ class ProposalsController < ApplicationController
 
   def show
     @proposal = Proposal.find(params[:id])
+  end
+
+  def accept
+    proposal_accept = Proposal.find(params[:id])
+    property = proposal_accept.property
+    if proposal_accept.update(status: 'accepted')
+      flash[:notice] = "Proposta aceita"
+      proposals_canceled = property.proposals - [proposal_accept]
+      proposals_canceled.update(status: 'canceled')
+    else
+      render :show
+    end
+    redirect_to proposal_url(@proposal.id)
   end
 
   private
