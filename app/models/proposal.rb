@@ -31,8 +31,6 @@ class Proposal < ApplicationRecord
       if date_diff > property.maximum_rent_days
         errors.add(:start_date, 'Sua proposta extrapolou o número de dias permitidos')
       end
-    else
-      errors.add(:start_date, 'A data é invalida')
     end
   end
 
@@ -44,8 +42,6 @@ class Proposal < ApplicationRecord
       if date_diff < property.minimum_rent_days
         errors.add(:start_date, 'Sua proposta está abaixo do mínimo número de dias permitidos')
       end
-    else
-      errors.add(:start_date, 'A data é invalida')
     end
   end
 
