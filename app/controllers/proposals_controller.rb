@@ -25,12 +25,11 @@ class ProposalsController < ApplicationController
     property = proposal_accept.property
     if proposal_accept.update(status: 'accepted')
       flash[:notice] = "Proposta aceita"
-      proposals_canceled = property.proposals - [proposal_accept]
-      proposals_canceled.update(status: 'canceled')
+      canceled_proposal = property.proposals - [proposal_accept]
     else
       render :show
     end
-    redirect_to proposal_url(@proposal.id)
+      redirect_to proposal_path
   end
 
   private
@@ -38,5 +37,11 @@ class ProposalsController < ApplicationController
   def proposal_params
     params.require(:proposal).permit(:user_name, :email, :start_date, :end_date,
                                 :total_guests, :rent_purpose, :agree_with_rules)
+  end
+
+  def canceled_proposal
+    @property.proposals.each do |proposal|
+      proposal.status = 'canceled'
+    end
   end
 end

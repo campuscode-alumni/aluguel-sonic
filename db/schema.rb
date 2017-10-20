@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017222602) do
+ActiveRecord::Schema.define(version: 20171019232714) do
 
   create_table "properties", force: :cascade do |t|
     t.string "area"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20171017222602) do
   create_table "proposals", force: :cascade do |t|
     t.string "user_name"
     t.string "email"
-    t.string "start_date"
-    t.string "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.decimal "total_amount"
     t.integer "total_guests"
     t.text "rent_purpose"

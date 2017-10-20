@@ -17,35 +17,26 @@ class Proposal < ApplicationRecord
   private
 
   def calculate_total_amount
-    calc_start_date = Date.parse(start_date)
-    calc_end_date = Date.parse(end_date)
-    date_diff = (calc_end_date - calc_start_date).to_i
     self.total_amount = date_diff * property.daily_rate
   end
 
   def total_days_cannot_be_greater_than_property_maximum_days
-    if !start_date.empty? && !end_date.empty?
-      calc_start_date = Date.parse(start_date)
-      calc_end_date = Date.parse(end_date)
-      date_diff = (calc_end_date - calc_start_date).to_i
-      if date_diff > property.maximum_rent_days
+    if date_diff > property.maximum_rent_days
         errors.add(:start_date, 'Sua proposta extrapolou o número de dias permitidos')
-      end
-    else
-      errors.add(:start_date, 'A data é invalida')
     end
   end
 
   def total_days_cannot_be_less_than_property_minimun_days
-    if !start_date.empty? && !end_date.empty?
-      calc_start_date = Date.parse(start_date)
-      calc_end_date = Date.parse(end_date)
-      date_diff = (calc_end_date - calc_start_date).to_i
-      if date_diff < property.minimum_rent_days
+    if date_diff < property.minimum_rent_days
         errors.add(:start_date, 'Sua proposta está abaixo do mínimo número de dias permitidos')
-      end
+    end
+  end
+
+  def date_diff
+    if end_date && start_date
+      date_diff = (end_date - start_date).to_i
     else
-      errors.add(:start_date, 'A data é invalida')
+      date_diff = 0
     end
   end
 
