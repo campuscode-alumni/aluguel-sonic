@@ -26,7 +26,7 @@ feature 'owner register daily rate by season' do
     expect(page).to have_css('dt', text: 'Preço da diaria')
 
     expect(page).to have_css('dl', text: '01/07/2018')
-    expect(page).to have_css('dl', text: '30/07/2018')
+    expect(page).to have_css('dl', text: '31/07/2018')
     expect(page).to have_css('dl', text: 'R$ 150,00')
   end
 

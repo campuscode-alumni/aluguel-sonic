@@ -1,13 +1,19 @@
-<div class="success"><%= flash[:message] %></div>
+<div class="success"><%= flash[:notice] %></div>
 
-<h1>Detalhes da proposta enviada</h1>
+<%= flash[:notice] %>
+
+
+<h1>Detalhes da proposta</h1>
 <h2><%= @proposal.property.title %></h2>
 <p>Nome da pessoa: <%= @proposal.user_name %></p>
 <p>Email: <%= @proposal.email %></p>
-<p>Data inicio: <%= @proposal.start_date %></p>
-<p>Data fim: <%= @proposal.end_date %></p>
+<p>Data inicio: <%= I18n.localize @proposal.start_date %></p>
+<p>Data fim: <%= I18n.localize @proposal.end_date %></p>
 <p>Quantidade de pessoas: <%= @proposal.total_guests %></p>
 <p>Proposito da Locação: <%= @proposal.rent_purpose %></p>
-<p>Valor total: <%= number_to_currency(@proposal.total_amount, unit: "R$ ", separator: ",", delimiter: "") %></p>
+<p>Valor total: <%= number_to_currency(@proposal.total_amount) %></p>
+<p>Status: <%= @proposal.status %></p>
 
-<%= link_to 'Voltar', root_path %>
+<%= link_to 'Voltar', root_path, class: "btn btn-primary" %>
+
+<%= link_to 'Aceitar proposta', accept_proposal_path, method: :post  %>

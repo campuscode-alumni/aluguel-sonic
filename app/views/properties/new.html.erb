@@ -1,3 +1,5 @@
+<h1>Anunciar um imóvel</h1>
+
 <% if @property.errors.any? %>
   <% @property.errors.full_messages.each do |msg| %>
     <div class="error alert alert-danger"><%= msg %></div>
@@ -5,41 +7,56 @@
 <% end %>
 
 <%= form_for @property do |f| %>
-  <%= f.label :title, 'Nome' %>
-  <%= f.text_field :title %>
-
-  <%= f.label :property_location, 'Local' %>
-  <%= f.text_field :property_location %>
-
-  <%= f.label :area, 'Tamanho (m2)' %>
-  <%= f.text_field :area %>
-
-  <%= f.label :description, 'Descrição' %>
-  <%= f.text_area :description %>
-
-  <%= f.label :daily_rate, 'Valor padrão da diária' %>
-  <%= f.number_field :daily_rate %>
-
-  <%= f.label :rooms, 'Quantidade de quartos' %>
-  <%= f.number_field :rooms %>
-
-  <%= f.label :minimum_rent_days, 'Mínimo de dias para locação' %>
-  <%= f.number_field :minimum_rent_days %>
-
-  <%= f.label :maximum_rent_days, 'Máximo de dias para locação' %>
-  <%= f.number_field :maximum_rent_days %>
-
-  <%= f.label :photo, 'Foto' %>
-  <%= f.text_field :photo %>
-
-  <%= f.label :maximum_occupancy, 'Máximo de pessoas' %>
-  <%= f.number_field :maximum_occupancy %>
-
-  <%= f.label :usage_rules, 'Regras de uso' %>
-  <%= f.text_area :usage_rules %>
-
-  <%= f.label :property_type, 'Tipo do Imóvel' %>
-  <%= f.text_field :property_type %>
-
-  <%= f.submit 'Enviar' %>
+  <fieldset>
+    <legend>Formulário para envio de imóvel</legend>
+    <div class="form-group">
+      <%= f.label :title, 'Nome' %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :property_location, 'Local' %>
+      <%= f.text_field :property_location, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :area, 'Tamanho (m2)' %>
+      <%= f.text_field :area, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, 'Descrição' %>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :daily_rate, 'Valor padrão da diária' %>
+      <%= f.number_field :daily_rate, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :rooms, 'Quantidade de quartos' %>
+      <%= f.number_field :rooms, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :minimum_rent_days, 'Mínimo de dias para locação' %>
+      <%= f.number_field :minimum_rent_days, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :maximum_rent_days, 'Máximo de dias para locação' %>
+      <%= f.number_field :maximum_rent_days, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :photo, 'Foto' %>
+      <%= f.text_field :photo, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :maximum_occupancy, 'Máximo de pessoas' %>
+      <%= f.number_field :maximum_occupancy, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :usage_rules, 'Regras de uso' %>
+      <%= f.text_area :usage_rules, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :property_type, 'Tipo do Imóvel' %>
+      <%= f.text_field :property_type, class: 'form-control' %>
+    </div>
+  </fieldset>
+  <%= f.submit 'Enviar', class: "btn btn-primary" %>
 <% end %>

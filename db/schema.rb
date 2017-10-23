@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20171023212125) do
   create_table "proposals", force: :cascade do |t|
     t.string "user_name"
     t.string "email"
-    t.string "start_date"
-    t.string "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.decimal "total_amount"
     t.integer "total_guests"
     t.text "rent_purpose"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20171023212125) do
     t.datetime "updated_at", null: false
     t.integer "property_id"
     t.boolean "agree_with_rules"
+    t.integer "status", default: 0
     t.index ["property_id"], name: "index_proposals_on_property_id"
   end
 

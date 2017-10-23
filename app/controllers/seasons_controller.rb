@@ -3,7 +3,7 @@ class SeasonsController < ApplicationController
     @property = Property.find(params[:property_id])
     @season = Season.new
   end
-  
+
   def create
     @property = Property.find(params[:property_id])
     @season = @property.seasons.new(season_params)

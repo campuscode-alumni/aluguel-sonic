@@ -21,11 +21,18 @@ feature 'visitor visits homepage' do
 
     expect(page).to have_css('h2', text: 'Imóveis:')
     expect(page).to have_css('h3', text: 'Casa na praia')
-    expect(page).to have_css('li', text: 'Tipo da propriedade: Casa da praia')
-    expect(page).to have_css('li', text: 'Localidade: São Vicente - SP')
-    expect(page).to have_css('li', text: 'Descrição: Lalala')
-    expect(page).to have_css('li', text: 'Área: 100m2')
-    expect(page).to have_css('li', text: 'Preço da diaria: R$ 100,00')
+    expect(page).to have_css('dt', text: 'Tipo da propriedade:')
+    expect(page).to have_css('dt', text: 'Localidade:')
+    expect(page).to have_css('dt', text: 'Descrição:')
+    expect(page).to have_css('dt', text: 'Área:')
+    expect(page).to have_css('dt', text: 'Preço da diaria:')
+
+
+    expect(page).to have_css('dd', text: 'Casa da praia')
+    expect(page).to have_css('dd', text: 'São Vicente - SP')
+    expect(page).to have_css('dd', text: 'Lalala')
+    expect(page).to have_css('dd', text: '100m2')
+    expect(page).to have_css('dd', text: 'R$ 100,00')
   end
 
   scenario 'and there is no properties' do
