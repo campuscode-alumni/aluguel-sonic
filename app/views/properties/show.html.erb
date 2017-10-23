@@ -10,17 +10,19 @@
 <dl>
   <dt>Tamanho:</dt>
   <dd><%= @property.area %> m2</dd>
-  <dt>Tipo do imóvel:</dt>
+  <dt>Tipo do imóvel</dt>
   <dd><%= @property.property_type %></dd>
-  <dt>Quantidade de quartos:</dt>
+  <dt>Quantidade de quartos</dt>
   <dd><%= @property.rooms %></dd>
-  <dt>Máximo de pessoas:</dt>
+  <dt>Máximo de pessoas</dt>
   <dd><%= @property.maximum_occupancy %></dd>
-  <dt>Mínimo de dias para locação:</dt>
+  <dt>Mínimo de dias para locação</dt>
   <dd><%= @property.minimum_rent_days %></dd>
-  <dt>Máximo de dias para locação:</dt>
+  <dt>Máximo de dias para locação</dt>
   <dd><%= @property.maximum_rent_days %></dd>
-  <dt>Valor padrão da diária:</dt>
+  <dt>Valor padrão da diária</dt>
+  <dd id="current-season-price"><%= number_to_currency(@property.current_season_price) %></dd>
+  <dt>Valor atual da diária</dt>
   <dd><%= number_to_currency(@property.daily_rate) %></dd>
   <dt>Regras de uso:</dt>
   <dd><%= @property.usage_rules %></dd>

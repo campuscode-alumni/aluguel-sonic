@@ -24,14 +24,15 @@ feature 'owner register new property' do
     expect(page).to have_css('p', text: 'Localidade: Santos, São Paulo')
     expect(page).to have_css('h2', text: 'Detalhes')
 
-    expect(page).to have_css('dt', text: 'Tamanho:')
-    expect(page).to have_css('dt', text: 'Tipo do imóvel:')
-    expect(page).to have_css('dt', text: 'Quantidade de quartos:')
-    expect(page).to have_css('dt', text: 'Máximo de pessoas:')
-    expect(page).to have_css('dt', text: 'Mínimo de dias para locação:')
-    expect(page).to have_css('dt', text: 'Máximo de dias para locação:')
-    expect(page).to have_css('dt', text: 'Valor padrão da diária:')
-    expect(page).to have_css('dt', text: 'Regras de uso:')
+    expect(page).to have_css('dt', text: 'Tamanho')
+    expect(page).to have_css('dt', text: 'Tipo do imóvel')
+    expect(page).to have_css('dt', text: 'Quantidade de quartos')
+    expect(page).to have_css('dt', text: 'Máximo de pessoas')
+    expect(page).to have_css('dt', text: 'Mínimo de dias para locação')
+    expect(page).to have_css('dt', text: 'Máximo de dias para locação')
+    expect(page).to have_css('dt', text: 'Valor padrão da diária')
+    expect(page).to have_css('dt', text: 'Valor atual da diária')
+    expect(page).to have_css('dt', text: 'Regras de uso')
 
 
     expect(page).to have_css('dd', text: '150 m2')
@@ -40,6 +41,7 @@ feature 'owner register new property' do
     expect(page).to have_css('dd', text: '8')
     expect(page).to have_css('dd', text: '2')
     expect(page).to have_css('dd', text: '8')
+    expect(page).to have_css('dd', text: 'R$ 200,00')
     expect(page).to have_css('dd', text: 'R$ 200,00')
     expect(page).to have_css('dd', text: 'Não pode cachorro')
 

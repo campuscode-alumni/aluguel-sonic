@@ -25,4 +25,14 @@ class Property < ApplicationRecord
   validates :title, :property_location, :property_type, :daily_rate, :photo,
             :description,
             presence: {message: "Você deve preencher os campos obrigatórios"}
+
+  def current_season_price
+    season = seasons.where("start_date <= :start AND end_date >= :start",
+                  {start: Date.today}).last
+    if season
+      season.daily_rate
+    else
+      daily_rate
+    end
+  end
 end
