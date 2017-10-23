@@ -3,6 +3,8 @@ require 'date'
 class Proposal < ApplicationRecord
   belongs_to :property
 
+  enum status: { pending: 0, accepted: 1, rejected: 2}
+
   before_save :calculate_total_amount
 
   validates :user_name, :email, :start_date, :end_date, :total_guests,

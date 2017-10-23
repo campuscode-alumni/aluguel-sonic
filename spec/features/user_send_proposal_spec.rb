@@ -33,7 +33,7 @@ feature 'user send proposal to property owner' do
     expect(page).to have_css('p', text: 'Data fim: 20/12/2017')
     expect(page).to have_css('p', text: 'Quantidade de pessoas: 10')
     expect(page).to have_css('p', text: 'Proposito da Locação: Festa')
-    expect(page).to have_css('p', text: 'Valor total: R$ 1000,00')
+    expect(page).to have_css('p', text: 'Valor total: R$ 1.000,00')
     expect(page).to have_css('a', text: 'Voltar')
   end
 
