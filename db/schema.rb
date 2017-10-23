@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017213041) do
+ActiveRecord::Schema.define(version: 20171023212125) do
 
   create_table "properties", force: :cascade do |t|
     t.string "area"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 20171017213041) do
     t.integer "property_id"
     t.boolean "agree_with_rules"
     t.index ["property_id"], name: "index_proposals_on_property_id"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.decimal "daily_rate"
+    t.integer "property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_seasons_on_property_id"
   end
 
 end

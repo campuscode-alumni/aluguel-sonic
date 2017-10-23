@@ -1,3 +1,8 @@
+<% if flash[:message] %>
+  <div class="success"><%= flash[:message] %></div>
+<% end %>
+
+
 <h1><%= @property.title %></h1>
 <p>Descrição: <%= @property.description %></p>
 <p>Localidade: <%= @property.property_location %></p>
@@ -13,8 +18,20 @@
 <h3>Foto do local</h3>
 <%= @property.photo %>
 
-<%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
+<h3>Temporadas cadastradas:</h3>
+<div class="row-fluid">
+  <% @property.seasons.each do |season| %>
+    <div class="col-md-4">
+      <h4><%= season.name %></h4>
+      <dl>
+        <dt>Data início</dt> <dd>01/07/2018</dd>
+        <dt>Data fim</dt> <dd>30/07/2018</dd>
+        <dt>Preço da diaria</dt> <dd>R$ 150,00</dd>
+      </dl>
+    </div>
+  <% end %>
+</div>
 
-<% if flash[:message] %>
-  <div class="success"><%= flash[:message] %></div>
-<% end %>
+
+<%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
+<%= link_to 'Cadastrar preço especifico para uma temporada', new_property_season_path(@property) %>

@@ -1,5 +1,28 @@
+# == Schema Information
+#
+# Table name: properties
+#
+#  id                :integer          not null, primary key
+#  area              :string
+#  title             :string
+#  description       :text
+#  daily_rate        :decimal(, )
+#  rooms             :integer
+#  minimum_rent_days :integer
+#  maximum_rent_days :integer
+#  photo             :string
+#  maximum_occupancy :integer
+#  usage_rules       :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  property_location :string
+#  property_type     :string
+#
+
 class Property < ApplicationRecord
   has_many :proposals
+  has_many :seasons
   validates :title, :property_location, :property_type, :daily_rate, :photo,
-            :description, presence: true
+            :description,
+            presence: {message: "Você deve preencher os campos obrigatórios"}
 end

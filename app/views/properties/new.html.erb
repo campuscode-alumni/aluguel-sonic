@@ -1,6 +1,9 @@
-<% if flash[:error] %>
-  <div class="error"><%= flash[:error] %></div>
+<% if @property.errors.any? %>
+  <% @property.errors.full_messages.each do |msg| %>
+    <div class="error alert alert-danger"><%= msg %></div>
+  <% end %>
 <% end %>
+
 <%= form_for @property do |f| %>
   <%= f.label :title, 'Nome' %>
   <%= f.text_field :title %>

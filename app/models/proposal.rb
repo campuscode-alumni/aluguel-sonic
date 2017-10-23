@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: proposals
+#
+#  id               :integer          not null, primary key
+#  user_name        :string
+#  email            :string
+#  start_date       :string
+#  end_date         :string
+#  total_amount     :decimal(, )
+#  total_guests     :integer
+#  rent_purpose     :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  property_id      :integer
+#  agree_with_rules :boolean
+#
+
 require 'date'
 
 class Proposal < ApplicationRecord
