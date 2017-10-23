@@ -1,20 +1,32 @@
 <% if flash[:notice] %>
-  <div class="success"><%= flash[:notice] %></div>
+<div class="success alert alert-success" role="alert"><%= flash[:notice] %></div>
 <% end %>
+
 
 <h1><%= @property.title %></h1>
 <p>Descrição: <%= @property.description %></p>
 <p>Localidade: <%= @property.property_location %></p>
-<h2>Detalhes</h2>
-<p>Tamanho: <%= @property.area %> m2</p>
-<p>Tipo do imóvel: <%= @property.property_type %></p>
-<p>Quantidade de quartos: <%= @property.rooms %></p>
-<p>Máximo de pessoas: <%= @property.maximum_occupancy %></p>
-<p>Mínimo de dias para locação: <%= @property.minimum_rent_days %></p>
-<p>Máximo de dias para locação: <%= @property.maximum_rent_days %></p>
-<p>Valor padrão da diária: <%= number_to_currency(@property.daily_rate) %></p>
-<p>Regras de uso: <%= @property.usage_rules %></p>
-<h3>Foto do local</h3>
-<%= image_tag @property.photo %>
 
-<%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
+<h2>Detalhes</h2>
+<dl>
+  <dt>Tamanho:</dt>
+  <dd><%= @property.area %> m2</dd>
+  <dt>Tipo do imóvel:</dt>
+  <dd><%= @property.property_type %></dd>
+  <dt>Quantidade de quartos:</dt>
+  <dd><%= @property.rooms %></dd>
+  <dt>Máximo de pessoas:</dt>
+  <dd><%= @property.maximum_occupancy %></dd>
+  <dt>Mínimo de dias para locação:</dt>
+  <dd><%= @property.minimum_rent_days %></dd>
+  <dt>Máximo de dias para locação:</dt>
+  <dd><%= @property.maximum_rent_days %></dd>
+  <dt>Valor padrão da diária:</dt>
+  <dd><%= number_to_currency(@property.daily_rate) %></dd>
+  <dt>Regras de uso:</dt>
+  <dd><%= @property.usage_rules %></dd>
+</dl>
+<h3>Foto do local</h3>
+<%= @property.photo %>
+<hr>
+<%= link_to 'Enviar proposta', new_property_proposal_path(@property), class: "btn btn-primary" %>

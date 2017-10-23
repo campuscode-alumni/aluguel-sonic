@@ -14,6 +14,6 @@
 <p>Valor total: <%= number_to_currency(@proposal.total_amount) %></p>
 <p>Status: <%= @proposal.status %></p>
 
-<%= link_to 'Voltar', root_path %>
+<%= link_to 'Voltar', root_path, class: "btn btn-primary" %>
 
 <%= link_to 'Aceitar proposta', accept_proposal_path, method: :post  %>
