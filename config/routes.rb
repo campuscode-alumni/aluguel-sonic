@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get "/search" => "home#search"
   resources :properties, only: [:show, :new, :create] do
     resources :proposals, shallow: true do
-      post "accept", on: :member 
+      post "accept", on: :member
     end
+    resources :unavailable_periods, only: [:new, :create]
   end
 end

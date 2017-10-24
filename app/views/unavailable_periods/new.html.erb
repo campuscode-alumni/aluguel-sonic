@@ -1,0 +1,12 @@
+<h1>Cadastre o período de indisponibilidade</h1>
+<%= form_for([@property, @unavailable_period]) do |f| %>
+  <div class="form-group">
+    <%= f.label :start_date_unavailable, 'Data inicio' %>
+    <%= f.text_field :start_date_unavailable , class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_date_unavailable, 'Data fim' %>
+    <%= f.text_field :end_date_unavailable, class:'form-control' %>
+  </div>
+  <%= f.submit 'Cadastrar' %>
+<% end %>

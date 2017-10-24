@@ -30,3 +30,5 @@
 <%= @property.photo %>
 <hr>
 <%= link_to 'Enviar proposta', new_property_proposal_path(@property), class: "btn btn-primary" %>
+
+<%= link_to 'Cadastrar período indisponível', new_property_unavailable_period_path(@property) %>

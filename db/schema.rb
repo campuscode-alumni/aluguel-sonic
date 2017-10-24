@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023211940) do
+ActiveRecord::Schema.define(version: 20171023233802) do
+
+  create_table "periods", force: :cascade do |t|
+    t.date "start_date_unavailable"
+    t.date "end_date_unavailable"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "properties", force: :cascade do |t|
     t.string "area"
@@ -27,6 +35,8 @@ ActiveRecord::Schema.define(version: 20171023211940) do
     t.datetime "updated_at", null: false
     t.string "property_location"
     t.string "property_type"
+    t.integer "unavailable_period_id"
+    t.index ["unavailable_period_id"], name: "index_properties_on_unavailable_period_id"
   end
 
   create_table "proposals", force: :cascade do |t|
@@ -43,6 +53,14 @@ ActiveRecord::Schema.define(version: 20171023211940) do
     t.boolean "agree_with_rules"
     t.integer "status", default: 0
     t.index ["property_id"], name: "index_proposals_on_property_id"
+  end
+
+  create_table "unavailable_periods", force: :cascade do |t|
+    t.date "start_date_unavailable"
+    t.date "end_date_unavailable"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
