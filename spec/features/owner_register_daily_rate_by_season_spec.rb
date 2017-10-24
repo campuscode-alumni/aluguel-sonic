@@ -67,6 +67,31 @@ feature 'owner register daily rate by season' do
 
     expect(page).to have_css('dt', text: 'Valor atual da diária')
     expect(page).to have_css('dd#current-season-price', text: 'R$ 150,00')
+  end
 
+  scenario 'and can\'t have truncated dates' do
+    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
+                                area:'100', description:'Lalala', daily_rate:100,
+                                rooms:2, minimum_rent_days:5,
+                                maximum_rent_days:10, photo:'/mi.jpg',
+                                maximum_occupancy:20, usage_rules:'no dogs',
+                                property_type:'Casa da praia')
+    season = property.seasons.create(name: 'Temporada de feriado',
+                                      start_date: '12/03/2018',
+                                      end_date: '12/04/2018',
+                                      daily_rate: '150')
+
+    visit property_path property
+    click_on 'Cadastrar preço especifico para uma temporada'
+
+    fill_in 'Nome', with: 'Férias de julho'
+    fill_in 'Data início', with: '01/03/2018'
+    fill_in 'Data fim', with: '15/03/2018'
+    fill_in 'Preço da diaria', with: '150'
+    click_on 'Registrar temporada'
+
+    error_msg = 'Existe uma temporada com conflitos nesse intervalo de datas'
+    expect(current_path).to eq(property_seasons_path(property))
+    expect(page).to have_css('div.alert.alert-danger', text: error_msg)
   end
 end

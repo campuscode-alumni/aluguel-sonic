@@ -5,8 +5,8 @@
 #  id               :integer          not null, primary key
 #  user_name        :string
 #  email            :string
-#  start_date       :string
-#  end_date         :string
+#  start_date       :date
+#  end_date         :date
 #  total_amount     :decimal(, )
 #  total_guests     :integer
 #  rent_purpose     :text
@@ -14,6 +14,7 @@
 #  updated_at       :datetime         not null
 #  property_id      :integer
 #  agree_with_rules :boolean
+#  status           :integer          default("pending")
 #
 
 require 'date'
