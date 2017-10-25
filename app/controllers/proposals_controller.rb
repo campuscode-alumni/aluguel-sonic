@@ -23,7 +23,7 @@ class ProposalsController < ApplicationController
   def accept
     proposal_accepted = Proposal.find(params[:id])
     property_of_the_proposal = proposal_accepted.property
-    rejected_proposal(proposal_accepted, property_of_the_proposal)
+    reject_proposals(proposal_accepted, property_of_the_proposal)
     if proposal_accepted.accepted!
       flash[:notice] = "Proposta Aceita"
     else
@@ -39,10 +39,9 @@ class ProposalsController < ApplicationController
                                 :total_guests, :rent_purpose, :agree_with_rules)
   end
 
-  def rejected_proposal(proposal_accepted, property_of_the_proposal)
-    init_dt = proposal_accepted.start_date
-    end_dt = proposal_accepted.end_date
-    rejected = property_of_the_proposal.proposals.where("start_date >= ? AND end_date <= ?", init_dt, end_dt)
-    rejected.each { |e| e.update(status: 2)  }
+  def reject_proposals(proposal_accepted, property_of_the_proposal)
+    rejected = property_of_the_proposal.proposals.where("start_date >= ? AND end_date <= ?", proposal_accepted.start_date, proposal_accepted.end_date)
+    rejected.each { |e| e.rejected!  }
   end
+
 end

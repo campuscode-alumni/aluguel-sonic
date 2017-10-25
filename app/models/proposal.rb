@@ -9,14 +9,25 @@ class Proposal < ApplicationRecord
 
   validates :user_name, :email, :start_date, :end_date, :total_guests,
             :rent_purpose, presence: {message: 'Você deve preencher todos os campos'}
+
   validates :agree_with_rules,
             acceptance: {message: 'Você deve estar de acordo com as regras'}
 
   validate :total_days_cannot_be_greater_than_property_maximum_days,
            :total_days_cannot_be_less_than_property_minimun_days,
-           :total_guests_cannot_be_greater_than_property_maximum_occupancy
+           :total_guests_cannot_be_greater_than_property_maximum_occupancy,
+           :reject_proposals_for_unavailable_period
 
   private
+
+  def reject_proposals_for_unavailable_period
+    #if property.unavailable_periods
+      if property.unavailable_periods.where("start_date_unavailable = ? AND end_date_unavailable = ?",
+                                             start_date, end_date).any?
+      errors.add(:start_date, "Imovel indisponivel para esse periodo")
+      end
+    #end
+  end
 
   def calculate_total_amount
     self.total_amount = date_diff * property.daily_rate

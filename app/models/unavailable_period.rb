@@ -1,3 +1,5 @@
 class UnavailablePeriod < ApplicationRecord
-  has_many :properties
+  belongs_to :property
+
+
 end
