@@ -2,13 +2,7 @@ require 'rails_helper'
 
 feature 'visitor search property' do
   scenario 'by type get results'do
-    property = Property.create(property_location: 'Rio de Janeiro',
-                              property_type: 'Praia',
-                              area: '100m2', title: 'Casa na praia',
-                              description: 'Casa grande e bonita na praia',
-                              daily_rate: 500, rooms: 5, minimum_rent_days: 2,
-                              maximum_rent_days: 5, photo: 'casa.jpg',
-                              maximum_occupancy: 10, usage_rules: 'Sem animais')
+    property = create(:property, property_type: 'Praia')
 
     visit root_path
 
@@ -22,21 +16,16 @@ feature 'visitor search property' do
     expect(page).to have_css('dd', text: property.description)
     expect(page).to have_css('dd', text: property.daily_rate)
     expect(page).to have_css('p', text: "De #{property.minimum_rent_days} Ate #{property.maximum_rent_days}")
-    expect(page).to have_css('dd', text: property.photo)
     expect(page).to have_css('dd', text: property.maximum_occupancy)
     expect(page).to have_css('dd', text: property.rooms)
     expect(page).to have_css('dd', text: property.usage_rules)
     expect(page).to have_css('dd', text: property.title)
+    expect(page).to have_css('h3', text: 'Foto do local')
+    expect(page).to have_xpath("//img[contains(@src,'casa.jpg')]")
   end
 
   scenario 'by location get results'do
-    property = Property.create(property_location: 'Minas Gerais',
-                              property_type: 'Sitio',
-                              area: '100m2', title: 'Casa em campo',
-                              description: 'Casa grande',
-                              daily_rate: 500, rooms: 5, minimum_rent_days: 2,
-                              maximum_rent_days: 5, photo: 'casa.jpg',
-                              maximum_occupancy: 10, usage_rules: 'Sem animais')
+    property = create(:property, property_location: 'Minas Gerais')
 
     visit root_path
 
@@ -50,21 +39,17 @@ feature 'visitor search property' do
     expect(page).to have_css('dd', text: property.description)
     expect(page).to have_css('dd', text: property.daily_rate)
     expect(page).to have_css('p', text: "De #{property.minimum_rent_days} Ate #{property.maximum_rent_days}")
-    expect(page).to have_css('dd', text: property.photo)
     expect(page).to have_css('dd', text: property.maximum_occupancy)
     expect(page).to have_css('dd', text: property.rooms)
     expect(page).to have_css('dd', text: property.usage_rules)
     expect(page).to have_css('dd', text: property.title)
+    expect(page).to have_css('h3', text: 'Foto do local')
+    expect(page).to have_xpath("//img[contains(@src,'casa.jpg')]")
   end
 
   scenario 'by location and type get results'do
-    property = Property.create(property_location: 'Praia',
-                              property_type: 'Praia',
-                              area: '100m2', title: 'Casa em campo',
-                              description: 'Casa grande',
-                              daily_rate: 500, rooms: 5, minimum_rent_days: 2,
-                              maximum_rent_days: 5, photo: 'casa.jpg',
-                              maximum_occupancy: 10, usage_rules: 'Sem animais')
+    property = create(:property, property_location: 'Praia',
+                        property_type: 'Praia')
 
     visit root_path
 
@@ -78,21 +63,17 @@ feature 'visitor search property' do
     expect(page).to have_css('dd', text: property.description)
     expect(page).to have_css('dd', text: property.daily_rate)
     expect(page).to have_css('p', text: "De #{property.minimum_rent_days} Ate #{property.maximum_rent_days}")
-    expect(page).to have_css('dd', text: property.photo)
     expect(page).to have_css('dd', text: property.maximum_occupancy)
     expect(page).to have_css('dd', text: property.rooms)
     expect(page).to have_css('dd', text: property.usage_rules)
     expect(page).to have_css('dd', text: property.title)
+    expect(page).to have_css('h3', text: 'Foto do local')
+    expect(page).to have_xpath("//img[contains(@src,'casa.jpg')]")
   end
 
   scenario 'and has no results' do
-    property = Property.create(property_location: 'Rio de Janeiro',
-                              property_type: 'Praia',
-                              area: '100m2', title: 'Casa na praia',
-                              description: 'Casa grande e bonita na praia',
-                              daily_rate: 500, rooms: 5, minimum_rent_days: 2,
-                              maximum_rent_days: 5, photo: 'casa.jpg',
-                              maximum_occupancy: 10, usage_rules: 'Sem animais')
+    property = create(:property, property_location: 'Santos',
+                        property_type: 'Praia')
 
 
    visit root_path

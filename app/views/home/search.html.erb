@@ -6,22 +6,26 @@
 
 <% @properties.each do |property| %>
   <h2><%= property.property_type %></h2>
-    <dl>
-      <dt>Título</dt>
-      <dd><%= property.title %></dd>
-      <dt>Localizacão</dt>
-      <dd><%= property.property_location %></dd>
-      <dt>Área</dt>
-      <dd><%= property.area %></dd>
-      <dt>Descricão</dt>
-      <dd><%= property.description %></dd>
-      <dt>Valor Diária</dt>
-      <dd><%= property.daily_rate %></dd>
-      <dt>Minimo Dias </dt>
-      <p>De <%= property.minimum_rent_days %> Ate <%= property.maximum_rent_days %></p>
-      <dt>Foto</dt>
-      <dd><%= property.photo %></dd>
-      <dt>Regras de Uso</dt>
-      <dd><%= property.usage_rules %></dd>
-    </dl>
+  <dl>
+    <dt>Título</dt>
+    <dd><%= property.title %></dd>
+    <dt>Localizacão</dt>
+    <dd><%= property.property_location %></dd>
+    <dt>Área</dt>
+    <dd><%= property.area %></dd>
+    <dt>Descricão</dt>
+    <dd><%= property.description %></dd>
+    <dt>Valor Diária</dt>
+    <dd><%= property.daily_rate %></dd>
+    <dt>Minimo Dias </dt>
+    <p>De <%= property.minimum_rent_days %> Ate <%= property.maximum_rent_days %></p>
+    <dt>Ocupação maxima</dt>
+    <dd><%= property.maximum_occupancy %></dd>
+    <dt>Quartos</dt>
+    <dd><%= property.rooms %></dd>
+    <dt>Regras de Uso</dt>
+    <dd><%= property.usage_rules %></dd>
+  </dl>
+  <h3>Foto do local</h3>
+  <%= image_tag property.photo %>
 <% end %>

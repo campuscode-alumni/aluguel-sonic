@@ -2,12 +2,8 @@ require 'rails_helper'
 
 feature 'user send proposal to property owner' do
   scenario 'successfully' do
-    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
-                                area:'100', description:'Lalala', daily_rate:100,
-                                rooms:2, minimum_rent_days:5,
-                                maximum_rent_days:10, photo:'/mi.jpg',
-                                maximum_occupancy:20, usage_rules:'no dogs',
-                                property_type:'Casa da praia')
+    property = create(:property, maximum_occupancy: 10, maximum_rent_days: 10,
+                        title: 'Casa na praia', daily_rate: 100)
 
     visit property_path(property)
     click_on 'Enviar proposta'
@@ -38,12 +34,7 @@ feature 'user send proposal to property owner' do
   end
 
   scenario 'and don\'t agree with rules' do
-    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
-                                area:'100', description:'Lalala', daily_rate:100,
-                                rooms:2, minimum_rent_days:5,
-                                maximum_rent_days:10, photo:'/mi.jpg',
-                                maximum_occupancy:20, usage_rules:'no dogs',
-                                property_type:'Casa da praia')
+    property = create(:property)
 
     visit property_path(property)
     click_on 'Enviar proposta'
@@ -61,12 +52,7 @@ feature 'user send proposal to property owner' do
   end
 
   scenario 'and fill required inputs' do
-    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
-                                area:'100', description:'Lalala', daily_rate:100,
-                                rooms:2, minimum_rent_days:5,
-                                maximum_rent_days:10, photo:'/mi.jpg',
-                                maximum_occupancy:20, usage_rules:'no dogs',
-                                property_type:'Casa da praia')
+    property = create(:property)
 
     visit property_path(property)
     click_on 'Enviar proposta'
@@ -85,12 +71,7 @@ feature 'user send proposal to property owner' do
   end
 
   scenario 'and cannot have more days than property allows' do
-    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
-                                area:'100', description:'Lalala', daily_rate:100,
-                                rooms:2, minimum_rent_days:5,
-                                maximum_rent_days:10, photo:'/mi.jpg',
-                                maximum_occupancy:20, usage_rules:'no dogs',
-                                property_type:'Casa da praia')
+    property = create(:property)
 
     visit property_path(property)
     click_on 'Enviar proposta'
@@ -110,12 +91,7 @@ feature 'user send proposal to property owner' do
   end
 
   scenario 'and cannot have less days than property allows' do
-    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
-                                area:'100', description:'Lalala', daily_rate:100,
-                                rooms:2, minimum_rent_days:5,
-                                maximum_rent_days:10, photo:'/mi.jpg',
-                                maximum_occupancy:20, usage_rules:'no dogs',
-                                property_type:'Casa da praia')
+    property = create(:property, minimum_rent_days: 4)
 
     visit property_path(property)
     click_on 'Enviar proposta'
@@ -135,12 +111,7 @@ feature 'user send proposal to property owner' do
   end
 
   scenario 'and maximun number of people can\'t be greater than property allows' do
-    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
-                                area:'100', description:'Lalala', daily_rate:100,
-                                rooms:2, minimum_rent_days:5,
-                                maximum_rent_days:10, photo:'/mi.jpg',
-                                maximum_occupancy:20, usage_rules:'no dogs',
-                                property_type:'Casa da praia')
+    property = create(:property)
 
     visit property_path(property)
     click_on 'Enviar proposta'

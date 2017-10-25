@@ -2,12 +2,7 @@ require 'rails_helper'
 
 feature 'owner register daily rate by season' do
   scenario 'succesfully' do
-    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
-                                area:'100', description:'Lalala', daily_rate:100,
-                                rooms:2, minimum_rent_days:5,
-                                maximum_rent_days:10, photo:'/mi.jpg',
-                                maximum_occupancy:20, usage_rules:'no dogs',
-                                property_type:'Casa da praia')
+    property = create(:property)
 
     visit property_path property
     click_on 'Cadastrar preço especifico para uma temporada'
@@ -27,16 +22,11 @@ feature 'owner register daily rate by season' do
 
     expect(page).to have_css('dl', text: '01/07/2018')
     expect(page).to have_css('dl', text: '31/07/2018')
-    expect(page).to have_css('dl', text: 'R$ 100,00')
+    expect(page).to have_css('dl', text: 'R$ 150,00')
   end
 
   scenario 'validates required fields' do
-    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
-                                area:'100', description:'Lalala', daily_rate:100,
-                                rooms:2, minimum_rent_days:5,
-                                maximum_rent_days:10, photo:'/mi.jpg',
-                                maximum_occupancy:20, usage_rules:'no dogs',
-                                property_type:'Casa da praia')
+    property = create(:property)
 
     visit property_path property
     click_on 'Cadastrar preço especifico para uma temporada'
@@ -53,12 +43,7 @@ feature 'owner register daily rate by season' do
 
   scenario 'check season price' do
     today = Date.today
-    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
-                                area:'100', description:'Lalala', daily_rate:100,
-                                rooms:2, minimum_rent_days:5,
-                                maximum_rent_days:10, photo:'/mi.jpg',
-                                maximum_occupancy:20, usage_rules:'no dogs',
-                                property_type:'Casa da praia')
+    property = create(:property)
     season = property.seasons.create(name: 'Temporada de feriado',
                                       start_date: today-2, end_date: today + 2,
                                       daily_rate: '150')
@@ -70,12 +55,8 @@ feature 'owner register daily rate by season' do
   end
 
   scenario 'and can\'t have truncated dates' do
-    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
-                                area:'100', description:'Lalala', daily_rate:100,
-                                rooms:2, minimum_rent_days:5,
-                                maximum_rent_days:10, photo:'/mi.jpg',
-                                maximum_occupancy:20, usage_rules:'no dogs',
-                                property_type:'Casa da praia')
+    property = create(:property)
+
     season = property.seasons.create(name: 'Temporada de feriado',
                                       start_date: '12/03/2018',
                                       end_date: '12/04/2018',

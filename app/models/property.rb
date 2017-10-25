@@ -22,6 +22,9 @@
 class Property < ApplicationRecord
   has_many :proposals
   has_many :seasons
+  has_attached_file :photo
+  validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
+
   validates :title, :property_location, :property_type, :daily_rate, :photo,
             :description,
             presence: {message: "Você deve preencher os campos obrigatórios"}
