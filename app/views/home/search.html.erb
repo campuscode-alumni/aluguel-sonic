@@ -1,31 +1,37 @@
-<h1>Você buscou por <%= params[:q] %></h1>
+<h1 class="mt-5">Você buscou por <%= params[:q] %></h1>
 
 <% if @properties.empty? %>
   <p>Nenhum imóvel encontrado</p>
 <% end %>
 
-<% @properties.each do |property| %>
-  <h2><%= property.property_type %></h2>
-  <dl>
-    <dt>Título</dt>
-    <dd><%= property.title %></dd>
-    <dt>Localizacão</dt>
-    <dd><%= property.property_location %></dd>
-    <dt>Área</dt>
-    <dd><%= property.area %></dd>
-    <dt>Descricão</dt>
-    <dd><%= property.description %></dd>
-    <dt>Valor Diária</dt>
-    <dd><%= property.daily_rate %></dd>
-    <dt>Minimo Dias </dt>
-    <p>De <%= property.minimum_rent_days %> Ate <%= property.maximum_rent_days %></p>
-    <dt>Ocupação maxima</dt>
-    <dd><%= property.maximum_occupancy %></dd>
-    <dt>Quartos</dt>
-    <dd><%= property.rooms %></dd>
-    <dt>Regras de Uso</dt>
-    <dd><%= property.usage_rules %></dd>
-  </dl>
-  <h3>Foto do local</h3>
-  <%= image_tag property.photo %>
-<% end %>
+<section class="row">
+  <% @properties.each do |property| %>
+    <div class="col-sm-12 col-md-5 col-lg-5">
+      <h3 class="mt-5">Foto do local</h3>
+      <%= image_tag property.photo, class: 'img-fluid' %>
+    </div>
+    <div class="col-sm-12 col-md-7 col-lg-7 mt-5">
+      <h2 class="text-success"><%= property.property_type %></h2>
+      <dl class="row">
+        <dt class="col-sm-4">Título</dt>
+        <dd class="col-sm-8"><%= property.title %></dd>
+        <dt class="col-sm-4">Localizacão</dt>
+        <dd class="col-sm-8"><%= property.property_location %></dd>
+        <dt class="col-sm-4">Área</dt>
+        <dd class="col-sm-8"><%= property.area %></dd>
+        <dt class="col-sm-4">Descricão</dt>
+        <dd class="col-sm-8"><%= property.description %></dd>
+        <dt class="col-sm-4">Valor Diária</dt>
+        <dd class="col-sm-8"><%= property.daily_rate %></dd>
+        <dt class="col-sm-4">Minimo Dias </dt>
+        <p class="col-sm-8">De <%= property.minimum_rent_days %> Ate <%= property.maximum_rent_days %></p>
+        <dt class="col-sm-4">Ocupação maxima</dt>
+        <dd class="col-sm-8"><%= property.maximum_occupancy %></dd>
+        <dt class="col-sm-4">Quartos</dt>
+        <dd class="col-sm-8"><%= property.rooms %></dd>
+        <dt class="col-sm-4">Regras de Uso</dt>
+        <dd class="col-sm-8"><%= property.usage_rules %></dd>
+      </dl>
+    </div>
+  <% end %>
+</section>

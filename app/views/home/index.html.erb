@@ -8,7 +8,7 @@
 <% if @properties.any? %>
 <section class="row">
   <% @properties.each do |property| %>
-  <div class="col-md-4 col-sm-12 col-lg 3">
+  <div class="col-md-4 col-sm-12 col-lg-4">
     <%= render partial: 'shared/property_detail',
                locals: {property: property} %>
   </div>
