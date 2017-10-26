@@ -14,7 +14,8 @@ feature 'owner register new property' do
     fill_in 'Mínimo de dias para locação', with: 2
     fill_in 'Máximo de dias para locação', with: 8
     fill_in 'Valor padrão da diária', with: 200
-    fill_in 'Foto', with: '/praia.jpg'
+
+    attach_file 'Foto', "#{Rails.root}/spec/image/casa.jpg"
     fill_in 'Descrição', with: 'É uma casa na praia muito cara'
     fill_in 'Regras de uso', with: 'Não pode cachorro'
     click_on 'Enviar'
@@ -24,14 +25,15 @@ feature 'owner register new property' do
     expect(page).to have_css('p', text: 'Localidade: Santos, São Paulo')
     expect(page).to have_css('h2', text: 'Detalhes')
 
-    expect(page).to have_css('dt', text: 'Tamanho:')
-    expect(page).to have_css('dt', text: 'Tipo do imóvel:')
-    expect(page).to have_css('dt', text: 'Quantidade de quartos:')
-    expect(page).to have_css('dt', text: 'Máximo de pessoas:')
-    expect(page).to have_css('dt', text: 'Mínimo de dias para locação:')
-    expect(page).to have_css('dt', text: 'Máximo de dias para locação:')
-    expect(page).to have_css('dt', text: 'Valor padrão da diária:')
-    expect(page).to have_css('dt', text: 'Regras de uso:')
+    expect(page).to have_css('dt', text: 'Tamanho')
+    expect(page).to have_css('dt', text: 'Tipo do imóvel')
+    expect(page).to have_css('dt', text: 'Quantidade de quartos')
+    expect(page).to have_css('dt', text: 'Máximo de pessoas')
+    expect(page).to have_css('dt', text: 'Mínimo de dias para locação')
+    expect(page).to have_css('dt', text: 'Máximo de dias para locação')
+    expect(page).to have_css('dt', text: 'Valor padrão da diária')
+    expect(page).to have_css('dt', text: 'Valor atual da diária')
+    expect(page).to have_css('dt', text: 'Regras de uso')
 
 
     expect(page).to have_css('dd', text: '150 m2')
@@ -41,10 +43,11 @@ feature 'owner register new property' do
     expect(page).to have_css('dd', text: '2')
     expect(page).to have_css('dd', text: '8')
     expect(page).to have_css('dd', text: 'R$ 200,00')
+    expect(page).to have_css('dd', text: 'R$ 200,00')
     expect(page).to have_css('dd', text: 'Não pode cachorro')
 
     expect(page).to have_css('h3', text: 'Foto do local')
-    expect(page).to have_content('/praia.jpg')
+    expect(page).to have_xpath("//img[contains(@src,'casa.jpg')]")
 
     expect(page).to have_css('div.success', text:'Imóvel cadastrado com sucesso!')
   end
@@ -62,7 +65,6 @@ feature 'owner register new property' do
     fill_in 'Mínimo de dias para locação', with: 2
     fill_in 'Máximo de dias para locação', with: 8
     fill_in 'Valor padrão da diária', with: ''
-    fill_in 'Foto', with: ''
     fill_in 'Descrição', with: ''
     fill_in 'Regras de uso', with: 'Não pode cachorro'
     click_on 'Enviar'

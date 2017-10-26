@@ -14,7 +14,6 @@ class PropertiesController < ApplicationController
       flash[:notice] = 'Imóvel cadastrado com sucesso!'
       redirect_to @property
     else
-      flash[:error] = 'Você deve preencher os campos obrigatórios'
       render :new
     end
   end

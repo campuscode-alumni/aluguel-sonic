@@ -1,10 +1,12 @@
 <h1>Anunciar um imóvel</h1>
 
-<% if flash[:error] %>
-  <div class="error alert alert-danger" role="alert"><%= flash[:error] %></div>
+<% if @property.errors.any? %>
+  <% @property.errors.full_messages.each do |msg| %>
+    <div class="error alert alert-danger"><%= msg %></div>
+  <% end %>
 <% end %>
 
-<%= form_for @property do |f| %>
+<%= form_for @property, html: { multipart: true } do |f| %>
   <fieldset>
     <legend>Formulário para envio de imóvel</legend>
     <div class="form-group">
@@ -41,7 +43,7 @@
     </div>
     <div class="form-group">
       <%= f.label :photo, 'Foto' %>
-      <%= f.text_field :photo, class: 'form-control' %>
+      <%= f.file_field :photo, class: 'form-control-file' %>
     </div>
     <div class="form-group">
       <%= f.label :maximum_occupancy, 'Máximo de pessoas' %>

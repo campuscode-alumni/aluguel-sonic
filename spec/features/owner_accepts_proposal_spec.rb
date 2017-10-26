@@ -2,14 +2,8 @@ require 'rails_helper'
 
 feature 'owner accepts proposal' do
   scenario 'accepted one proposal and recuse all others' do
-    property = Property.create(property_location: 'Rio de Janeiro',
-                               area: '100m2', title: 'Casa na praia',
-                               description: 'Casa na praia em copacabana',
-                               daily_rate: 200, rooms: 5,
-                               minimum_rent_days: 2, maximum_rent_days: 5,
-                               photo: 'casa.png', maximum_occupancy: 5,
-                               usage_rules: 'sem animais',
-                               property_type: 'praia')
+    property = create(:property, maximum_occupancy: 5, minimum_rent_days: 2,
+                        maximum_rent_days: 5)
 
     proposal1 = Proposal.create(user_name: 'Nailson_Ita',
                                 email: 'nailson.ita@ita.com',
@@ -52,14 +46,7 @@ feature 'owner accepts proposal' do
   end
 
   scenario 'and proposal with different period in same property continue pendent' do
-    property = Property.create(property_location: 'Rio de Janeiro',
-                               area: '100m2', title: 'Casa na praia',
-                               description: 'Casa na praia em copacabana',
-                               daily_rate: 200, rooms: 5,
-                               minimum_rent_days: 2, maximum_rent_days: 5,
-                               photo: 'casa.png', maximum_occupancy: 5,
-                               usage_rules: 'sem animais',
-                               property_type: 'praia')
+    property = create(:property)
 
     proposal1 = Proposal.create(user_name: 'Nailson_Ita',
                                 email: 'nailson.ita@ita.com',

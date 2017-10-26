@@ -18,10 +18,13 @@ gem 'jbuilder', '~> 2.5'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'bootstrap', '~> 4.0.0.beta2'
 
+gem "paperclip", "~> 5.0.0"
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'capybara'
+  gem "factory_bot_rails", "~> 4.0"
 end
 
 group :test do

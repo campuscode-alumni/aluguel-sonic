@@ -9,6 +9,25 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <%= link_to 'Aluga Temporada', root_path, class: 'navbar-brand' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to 'Cadastrar imóvel', new_property_path, class: 'nav-link' %>
+          </li>
+        </ul>
+        <%= form_tag("/search", method: "get", class: 'form-inline my-2 my-lg-0') do %>
+          <%= label_tag(:q, "Buscar", class: 'sr-only') %>
+          <%= text_field_tag(:q, nil, class: 'form-control mr-sm-2', placeholder: 'Buscar') %>
+          <%= submit_tag("Buscar", class: 'btn btn-outline-success my-2 my-sm-0') %>
+        <% end %>
+      </div>
+    </nav>
     <div class="container">
       <%= yield %>
     </div>

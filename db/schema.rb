@@ -36,6 +36,10 @@ ActiveRecord::Schema.define(version: 20171025202951) do
     t.string "property_location"
     t.string "property_type"
     t.integer "unavailable_period_id"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["unavailable_period_id"], name: "index_properties_on_unavailable_period_id"
   end
 
@@ -53,6 +57,17 @@ ActiveRecord::Schema.define(version: 20171025202951) do
     t.boolean "agree_with_rules"
     t.integer "status", default: 0
     t.index ["property_id"], name: "index_proposals_on_property_id"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.decimal "daily_rate"
+    t.integer "property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_seasons_on_property_id"
   end
 
   create_table "unavailable_periods", force: :cascade do |t|

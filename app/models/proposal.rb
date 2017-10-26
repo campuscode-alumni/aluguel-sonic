@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: proposals
+#
+#  id               :integer          not null, primary key
+#  user_name        :string
+#  email            :string
+#  start_date       :date
+#  end_date         :date
+#  total_amount     :decimal(, )
+#  total_guests     :integer
+#  rent_purpose     :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  property_id      :integer
+#  agree_with_rules :boolean
+#  status           :integer          default("pending")
+#
+
 require 'date'
 
 class Proposal < ApplicationRecord
@@ -28,26 +47,27 @@ class Proposal < ApplicationRecord
   end
 
   def calculate_total_amount
-    self.total_amount = date_diff * property.daily_rate
+    if start_date && end_date
+      date_diff = end_date - start_date
+      self.total_amount = date_diff * property.daily_rate
+    end
   end
 
   def total_days_cannot_be_greater_than_property_maximum_days
-    if date_diff > property.maximum_rent_days
+    if start_date && end_date
+      date_diff = end_date - start_date
+      if date_diff > property.maximum_rent_days
         errors.add(:start_date, 'Sua proposta extrapolou o número de dias permitidos')
+      end
     end
   end
 
   def total_days_cannot_be_less_than_property_minimun_days
-    if date_diff < property.minimum_rent_days
+    if start_date && end_date
+      date_diff = end_date - start_date
+      if date_diff < property.minimum_rent_days
         errors.add(:start_date, 'Sua proposta está abaixo do mínimo número de dias permitidos')
-    end
-  end
-
-  def date_diff
-    if end_date && start_date
-      date_diff = (end_date - start_date).to_i
-    else
-      date_diff = 0
+      end
     end
   end
 
