@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024224142) do
+ActiveRecord::Schema.define(version: 20171026223158) do
 
   create_table "properties", force: :cascade do |t|
     t.string "area"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 20171024224142) do
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string "address"
+    t.string "owner_document"
+    t.string "owner_name"
   end
 
   create_table "proposals", force: :cascade do |t|
@@ -46,6 +49,7 @@ ActiveRecord::Schema.define(version: 20171024224142) do
     t.integer "property_id"
     t.boolean "agree_with_rules"
     t.integer "status", default: 0
+    t.string "user_document"
     t.index ["property_id"], name: "index_proposals_on_property_id"
   end
 
