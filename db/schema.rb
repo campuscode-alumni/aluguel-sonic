@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171026223158) do
     t.datetime "updated_at", null: false
     t.string "property_location"
     t.string "property_type"
+    t.integer "unavailable_period_id"
     t.string "photo_file_name"
     t.string "photo_content_type"
     t.integer "photo_file_size"
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 20171026223158) do
     t.string "address"
     t.string "owner_document"
     t.string "owner_name"
+    t.index ["unavailable_period_id"], name: "index_properties_on_unavailable_period_id"
   end
 
   create_table "proposals", force: :cascade do |t|
@@ -62,6 +64,16 @@ ActiveRecord::Schema.define(version: 20171026223158) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_seasons_on_property_id"
+  end
+
+  create_table "unavailable_periods", force: :cascade do |t|
+    t.date "start_date_unavailable"
+    t.date "end_date_unavailable"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "property_id"
+    t.index ["property_id"], name: "index_unavailable_periods_on_property_id"
   end
 
 end

@@ -21,6 +21,11 @@
 
 class Property < ApplicationRecord
   has_many :proposals
+
+  has_many :unavailable_periods
+  validates :title, :property_location, :property_type, :daily_rate, :photo,
+            :description, presence: true
+
   has_many :seasons
   has_attached_file :photo
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/

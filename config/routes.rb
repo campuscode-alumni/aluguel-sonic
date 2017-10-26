@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :proposals, shallow: true do
       post "accept", on: :member
     end
+    resources :unavailable_periods, only: [:new, :create]
   end
 end

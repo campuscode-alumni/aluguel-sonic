@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'owner register new property' do
-  scenario 'successfuly' do
+  scenario 'successfully' do
     visit root_path
     click_on 'Anunciar um imóvel'
 
