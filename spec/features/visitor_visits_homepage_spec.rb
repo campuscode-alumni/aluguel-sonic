@@ -54,4 +54,23 @@ feature 'visitor visits homepage' do
 
     expect(current_path).to eq(property_path(property))
   end
+
+  scenario 'and sees unavailable periods of the property' do
+    property = Property.create(title:'Casa na praia', property_location:'São Vicente - SP',
+                                area:'100', description:'Lalala', daily_rate:100,
+                                rooms:2, minimum_rent_days:5,
+                                maximum_rent_days:10, photo:'/mi.jpg',
+                                maximum_occupancy:20, usage_rules:'no dogs',
+                                property_type:'Casa da praia')
+
+    period_unavailable = UnavailablePeriod.create(start_date_unavailable: '20/12/2017',
+                                                  end_date_unavailable: '28/12/2017',
+                                                  property: property)
+
+    visit root_path
+
+    expect(page).to have_css('dt', text: 'Datas indisponiveis:')
+    expect(page).to have_css('dd', text: "De #{I18n.localize property.unavailable_period.start_date_unavailable}
+                                          Ate #{I18n.localize property.unavailable_period.end_date_unavailable}")
+  end
 end

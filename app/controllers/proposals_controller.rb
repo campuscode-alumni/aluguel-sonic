@@ -40,7 +40,8 @@ class ProposalsController < ApplicationController
   end
 
   def reject_proposals(proposal_accepted, property_of_the_proposal)
-    rejected = property_of_the_proposal.proposals.where("start_date >= ? AND end_date <= ?", proposal_accepted.start_date, proposal_accepted.end_date)
+    rejected = property_of_the_proposal.proposals.where("start_date >= ? AND end_date <= ?",
+                                                  proposal_accepted.start_date, proposal_accepted.end_date)
     rejected.each { |e| e.rejected!  }
   end
 

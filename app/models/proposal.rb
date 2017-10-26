@@ -21,12 +21,10 @@ class Proposal < ApplicationRecord
   private
 
   def reject_proposals_for_unavailable_period
-    #if property.unavailable_periods
-      if property.unavailable_periods.where("start_date_unavailable = ? AND end_date_unavailable = ?",
-                                             start_date, end_date).any?
+    if property.unavailable_periods.where("start_date_unavailable >= ? AND end_date_unavailable <= ?",
+                                           start_date, end_date).any?
       errors.add(:start_date, "Imovel indisponivel para esse periodo")
-      end
-    #end
+    end
   end
 
   def calculate_total_amount

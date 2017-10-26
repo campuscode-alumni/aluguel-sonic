@@ -31,7 +31,8 @@ feature 'owner register unavailable period for rental' do
                                 property_type:'Casa da praia')
 
     period_unavailable = UnavailablePeriod.create(start_date_unavailable: '20/12/2017',
-                                                  end_date_unavailable: '28/12/2017')
+                                                  end_date_unavailable: '28/12/2017',
+                                                  property: property)
 
 
     visit new_property_proposal_path(property)
@@ -43,10 +44,13 @@ feature 'owner register unavailable period for rental' do
     fill_in 'Data fim', with: '28/12/2017'
     fill_in 'Quantidade de pessoas', with: 10
     fill_in 'Proposito da Locação', with: 'Festa'
+    check 'Concordar com as regras'
     click_on 'Enviar'
 
     property.reload
+
     expect(page).to have_css('div.error', text: 'Imovel indisponivel para esse periodo')
+
     expect(property.proposals.count).to eq 0
   end
 
