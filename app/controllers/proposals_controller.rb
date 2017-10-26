@@ -26,6 +26,7 @@ class ProposalsController < ApplicationController
     rejected_proposal(proposal_accepted, property_of_the_proposal)
     if proposal_accepted.accepted!
       flash[:notice] = "Proposta Aceita"
+      ProposalsMailer.accept_proposal
     else
       render :show
     end

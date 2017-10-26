@@ -10,7 +10,7 @@
     <%= link_to 'Enviar proposta', new_property_proposal_path(@property), class: "btn btn-primary mb-2" %>
     <%= link_to 'Cadastrar preço especifico para uma temporada', new_property_season_path(@property), class:"btn btn-warning" %>
   </div>
-  
+
   <div class="col-sm-12 col-md-7 col-lg-7 mt-5">
     <h1 class="mt-5 text-success"><%= @property.title %></h1>
     <p>Descrição: <%= @property.description %></p>
@@ -57,6 +57,26 @@
         <% end %>
       </div>
     </aside>
+  <% end %>
+
+  <% if @property.proposals.any? %>
+    <section class="row">
+      <h3>Propostas:</h3>
+      <div class="row-fluid">
+        <% @property.proposals.each do |proposal| %>
+          <h4><%= link_to proposal.user_name, proposal %></h4>
+          <dl>
+            <dt>Email</dt> <dd><%= proposal.email %></dd>
+            <dt>Data de inicio</dt> <dd><%= I18n.localize proposal.start_date %></dd>
+            <dt>Data fim</dt> <dd> <%= I18n.localize proposal.end_date %></dd>
+            <dt>Quantidade de pessoas</dt> <dd><%= proposal.total_guests %></dd>
+            <dt>Proposito da Locação</dt> <dd><%= proposal.rent_purpose %></dd>
+            <dt>Valor total</dt> <dd><%= number_to_currency(proposal.total_amount) %></dd>
+            <dt>Status</dt> <dd><%= proposal.status %></dd>
+          </dl>
+        <% end %>
+      </div>
+    </section>
   <% end %>
   <hr>
 
