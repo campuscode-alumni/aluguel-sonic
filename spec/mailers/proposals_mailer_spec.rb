@@ -13,6 +13,7 @@ describe ProposalsMailer, type: :mailer do
       expect(mail.from).to include 'no-reply@alugatemporada.com'
     end
 
+
       it 'renders body' do
         proposal = create(:proposal)
 
