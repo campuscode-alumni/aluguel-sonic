@@ -45,5 +45,5 @@ feature 'visitor visits homepage' do
     expect(current_path).to eq(property_path(property))
   end
 
-  
+
 end

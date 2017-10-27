@@ -4,7 +4,8 @@ feature 'owner register daily rate by season' do
   scenario 'succesfully' do
     property = create(:property)
 
-    visit property_path property
+    visit root_path
+    click_on property.title
     click_on 'Cadastrar preço especifico para uma temporada'
 
     fill_in 'Nome', with: 'Férias de julho'

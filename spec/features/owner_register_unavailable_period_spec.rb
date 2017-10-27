@@ -4,8 +4,9 @@ feature 'owner register unavailable period for rental' do
   scenario 'succesfully' do
 
     property = create(:property)
+    visit root_path
+    click_on property.title
 
-    visit property_path(property)
     click_on 'Cadastrar período indisponível'
 
     expect(page).to have_css('h1', text: 'Cadastre o período de indisponibilidade')

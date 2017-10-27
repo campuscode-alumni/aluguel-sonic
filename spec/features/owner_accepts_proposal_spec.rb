@@ -29,27 +29,14 @@ feature 'owner accepts proposal' do
   scenario 'and proposal with different period in same property continue pendent' do
     property = create(:property)
 
-    proposal1 = Proposal.create(user_name: 'Nailson_Ita',
-                                email: 'nailson.ita@ita.com',
-                                start_date: '16/10/2017',
-                                end_date: '19/10/2017',
-                                rent_purpose: 'Casamento',
-                                agree_with_rules: true,
-                                total_amount: 600,
-                                total_guests: 5,
-                                status: 0,
-                                property: property)
 
-    proposal2 = Proposal.create(user_name: 'Nailson_Ita',
-                                email: 'nailson.ita@ita.com',
-                                start_date: '16/10/2017',
-                                end_date: '19/10/2017',
-                                rent_purpose: 'Casamento',
-                                agree_with_rules: true,
-                                total_amount: 600,
-                                total_guests: 5,
-                                status: 0,
-                                property: property)
+    proposal1 = create(:proposal, property: property)
+
+    proposal2 = create(:proposal, property: property)
+
+    proposal3 = create(:proposal, start_date: '25/10/2017', end_date: '30/10/2017', property: property)
+
+
 
      proposal3= Proposal.create(user_name: 'Nailson_Ita',
                                 email: 'nailson.ita@ita.com',
