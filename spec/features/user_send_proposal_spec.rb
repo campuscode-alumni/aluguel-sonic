@@ -5,7 +5,8 @@ feature 'user send proposal to property owner' do
     property = create(:property, maximum_occupancy: 10, maximum_rent_days: 10,
                         title: 'Casa na praia', daily_rate: 100)
 
-    visit property_path(property)
+    visit root_path
+    click_on property.title
     click_on 'Enviar proposta'
 
     expect(page).to have_css('legend', text: 'Formulário de envio de proposta')
