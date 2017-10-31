@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="success"><%= flash[:notice] %></div>
+    <% end %>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <%= link_to 'Aluga Temporada', root_path, class: 'navbar-brand' %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">

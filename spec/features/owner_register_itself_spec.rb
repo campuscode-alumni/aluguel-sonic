@@ -16,7 +16,7 @@ feature 'Owner register itself' do
       click_on 'Entrar'
     end
 
-    expect(page).to have_css('.success', "Bem vindo(a)")
+    expect(page).to have_css('.success', text: "Login efetuado com sucesso.")
 
   end
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'user send proposal to property owner' do
   scenario 'successfully' do
     property = create(:property, maximum_occupancy: 10, maximum_rent_days: 10,
-                        title: 'Casa na praia', daily_rate: 100)
+                        title: 'Casa na praia azul', daily_rate: 100)
 
     visit root_path
     click_on property.title
