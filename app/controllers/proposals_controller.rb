@@ -9,6 +9,7 @@ class ProposalsController < ApplicationController
     @property = Property.find(params[:property_id])
     @proposal = @property.proposals.new(proposal_params)
     if @proposal.save
+      NewProposalMailer.email_new_proposals
       flash[:notice] = 'Proposta enviada com sucesso.'
       redirect_to @proposal
     else
