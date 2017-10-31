@@ -20,6 +20,8 @@ gem 'bootstrap', '~> 4.0.0.beta2'
 
 gem "paperclip", "~> 5.0.0"
 
+gem "devise"
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
