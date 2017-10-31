@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026223158) do
+ActiveRecord::Schema.define(version: 20171031213237) do
+
+  create_table "periods", force: :cascade do |t|
+    t.date "start_date_unavailable"
+    t.date "end_date_unavailable"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "properties", force: :cascade do |t|
     t.string "area"
@@ -35,6 +43,7 @@ ActiveRecord::Schema.define(version: 20171026223158) do
     t.string "address"
     t.string "owner_document"
     t.string "owner_name"
+    t.string "owner_email"
     t.index ["unavailable_period_id"], name: "index_properties_on_unavailable_period_id"
   end
 
