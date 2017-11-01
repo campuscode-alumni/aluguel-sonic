@@ -7,7 +7,7 @@ feature 'Owner register itself' do
 
     visit root_path
 
-    click_on 'Entrar'
+    click_on 'Entrar como Proprietário'
 
     fill_in 'Email', with: owner.email
     fill_in 'Senha', with: owner.password

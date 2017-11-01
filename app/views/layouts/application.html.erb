@@ -21,7 +21,10 @@
             <%= link_to 'Cadastrar imóvel', new_property_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Entrar', new_owner_session_path, class: 'nav-link' %>
+            <%= link_to 'Entrar como Proprietário', new_owner_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Entrar como Usuário', new_user_session_path, class: 'nav-link' %>
           </li>
         </ul>
         <%= form_tag("/search", method: "get", class: 'form-inline my-2 my-lg-0') do %>
