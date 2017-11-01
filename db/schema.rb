@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 20171031231149) do
     t.datetime "updated_at", null: false
     t.string "property_location"
     t.string "property_type"
-    t.integer "unavailable_period_id"
     t.string "photo_file_name"
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer "unavailable_period_id"
     t.string "address"
     t.string "owner_email"
     t.integer "owner_id"
