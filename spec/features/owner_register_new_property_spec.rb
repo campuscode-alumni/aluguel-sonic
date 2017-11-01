@@ -4,18 +4,10 @@ feature 'owner register new property' do
   scenario 'successfully' do
     owner = create(:owner)
 
+    login_as(owner)
     visit root_path
 
-    visit new_owner_session_url
-
-    fill_in 'Email', with: owner.email
-    fill_in 'Senha', with: owner.password
-
-    within 'div.actions' do
-      click_on 'Entrar'
-    end
-    
-    click_on 'Anunciar um imóvel'
+    click_on 'Cadastrar imóvel'
 
     fill_in 'Nome', with: 'Casa de frente pro mar'
     fill_in 'Local', with: 'Santos, São Paulo'
@@ -32,7 +24,7 @@ feature 'owner register new property' do
     fill_in 'Regras de uso', with: 'Não pode cachorro'
     click_on 'Enviar'
 
-    expect(page).to have_css('h1', text:'Casa de frente pro mar')
+    expect(page).to have_css('h1', text: 'Casa de frente pro mar')
     expect(page).to have_css('p', text: 'Descrição: É uma casa na praia muito cara')
     expect(page).to have_css('p', text: 'Localidade: Santos, São Paulo')
     expect(page).to have_css('h2', text: 'Detalhes')
@@ -47,7 +39,6 @@ feature 'owner register new property' do
     expect(page).to have_css('dt', text: 'Valor atual da diária')
     expect(page).to have_css('dt', text: 'Regras de uso')
 
-
     expect(page).to have_css('dd', text: '150 m2')
     expect(page).to have_css('dd', text: 'Casa na praia')
     expect(page).to have_css('dd', text: '4')
@@ -61,12 +52,16 @@ feature 'owner register new property' do
     expect(page).to have_css('h3', text: 'Foto do local')
     expect(page).to have_xpath("//img[contains(@src,'casa.jpg')]")
 
-    expect(page).to have_css('div.success', text:'Imóvel cadastrado com sucesso!')
+    expect(page).to have_css('div.success', text: 'Imóvel cadastrado com sucesso!')
   end
 
   scenario 'and must fill all required fields' do
+    owner = create(:owner)
+
+    login_as(owner)
     visit root_path
-    click_on 'Anunciar um imóvel'
+
+    click_on 'Cadastrar imóvel'
 
     fill_in 'Nome', with: ''
     fill_in 'Local', with: ''
@@ -81,6 +76,13 @@ feature 'owner register new property' do
     fill_in 'Regras de uso', with: 'Não pode cachorro'
     click_on 'Enviar'
 
-    expect(page).to have_css('div.error', text:'Você deve preencher os campos obrigatórios')
+    expect(page).to have_css('div.error', text: 'Você deve preencher os campos obrigatórios')
+  end
+  scenario 'owner must be signed in' do
+    visit root_path
+
+    click_on 'Cadastrar imóvel'
+
+    expect(current_path).to eq(new_owner_session_path)
   end
 end

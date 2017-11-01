@@ -20,24 +20,43 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+          </li>
           <li class="nav-item">
             <%= link_to 'Cadastrar imóvel', new_property_path, class: 'nav-link' %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'Entrar', new_owner_session_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Cadastrar', new_owner_registration_path, class: 'nav-link' %>
-          </li>
+
+          <% if owner_signed_in? %>
+
           <li class="nav-item">
             <%= link_to 'Minhas propostas', proposals_path, class: 'nav-link' %>
           </li>
+          <% end %>
         </ul>
-        <%= form_tag("/search", method: "get", class: 'form-inline my-2 my-lg-0') do %>
-          <%= label_tag(:q, "Buscar", class: 'sr-only') %>
-          <%= text_field_tag(:q, nil, class: 'form-control mr-sm-2', placeholder: 'Buscar') %>
-          <%= submit_tag("Buscar", class: 'btn btn-outline-success my-2 my-sm-0') %>
-        <% end %>
+          <%= form_tag("/search", method: "get", class: 'form-inline my-2 my-lg-0') do %>
+            <%= label_tag(:q, "Buscar", class: 'sr-only') %>
+            <%= text_field_tag(:q, nil, class: 'form-control mr-sm-2', placeholder: 'Buscar') %>
+            <%= submit_tag("Buscar", class: 'btn btn-outline-success my-2 mr-5 my-sm-0') %>
+          <% end %>
+          <div class="navbar">
+          <ul class="navbar-nav mr-auto">
+            <% if owner_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Sair', destroy_owner_session_path, method: 'DELETE', class: 'btn btn-outline-success ml-5 mr-3' %>
+            </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'Entrar', new_owner_session_path, class: 'btn btn-outline-success ml-5 mr-3' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Cadastrar', new_owner_registration_path,  class: 'btn btn-outline-success' %>
+              </li>
+            <% end %>
+
+          </ul>
+        </div>
+
       </div>
     </nav>
     <div class="container">

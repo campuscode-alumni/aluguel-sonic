@@ -3,6 +3,10 @@ require 'rails_helper'
 feature 'visitor interacts with menu' do
   scenario 'and click on register property' do
     visit root_path
+
+    owner = create(:owner)
+    login_as(owner, scope: :owner)
+
     within 'nav' do
       click_on 'Cadastrar imóvel'
     end
@@ -11,6 +15,7 @@ feature 'visitor interacts with menu' do
 
   scenario 'and click brand name to return to index' do
     visit new_property_path
+
     within 'nav' do
       click_on 'Aluga Temporada'
     end

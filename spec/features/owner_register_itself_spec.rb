@@ -2,26 +2,7 @@ require 'rails_helper'
 include ActionView::Helpers::NumberHelper
 
 feature 'Owner register itself' do
-  scenario 'And logs in' do
-
-    owner = Owner.create(email: 'n@n.com.br', password: '123456789')
-
-    visit root_path
-
-    click_on 'Entrar'
-
-    fill_in 'Email', with: owner.email
-    fill_in 'Senha', with: owner.password
-
-    within 'div.actions' do
-      click_on 'Entrar'
-    end
-
-    expect(page).to have_css('.success', text: "Login efetuado com sucesso.")
-
-  end
-
-  scenario "and registers himself" do
+  scenario 'and registers himself' do
     visit root_path
 
     click_on 'Cadastrar'
@@ -37,17 +18,14 @@ feature 'Owner register itself' do
     end
 
     expect(page).to have_css('.success', text: 'Bem vindo! Você realizou seu registro com sucesso.')
-
   end
 
   scenario 'and sees all received proposals' do
-
     owner = create(:owner)
-    property = create(:property , owner: owner)
+    property = create(:property, owner: owner)
 
     proposal_1 = create(:proposal, property: property)
-    proposal_2 = create(:proposal, email: 'ale@ale.com.br' ,property: property)
-
+    proposal_2 = create(:proposal, email: 'ale@ale.com.br', property: property)
 
     visit new_owner_session_url
 
@@ -75,9 +53,5 @@ feature 'Owner register itself' do
     expect(page).to have_css('dd', text: proposal_2.rent_purpose)
     expect(page).to have_css('dd', text: number_to_currency(proposal_2.total_amount))
     expect(page).to have_css('dd', text: proposal_2.status)
-
-
-
   end
-
 end
