@@ -1,0 +1,16 @@
+<h1>Resumo dos dados do imóvel:</h1>
+<dl>
+  <dt>Título: </dt><dd><%= @property.title %></dd>
+  <dt>Descrição: </dt><dd><%= @property.description %></dd>
+  <dt>Localização: </dt><dd><%= @property.property_location %></dd>
+</dl>
+<h3>Dados da proposta:</h3>
+<dl>
+  <dt>Propósito da Locação: </dt><dd><%= @proposal.rent_purpose %></dd>
+  <dt>Nome do interessado: </dt><dd><%= @proposal.user_name %></dd>
+  <dt>Email: </dt><dd><%= @proposal.email %></dd>
+  <dt>Data Inicial: </dt><dd><%= I18n.l @proposal.start_date %></dd>
+  <dt>Data Final: </dt><dd><%= I18n.l @proposal.end_date %></dd>
+  <dt>Valor total: </dt><dd><%= @proposal.total_amount %></dd>
+  <dt>Quantidade de pessoas: </dt><dd><%= @proposal.total_guests %></dd>
+</dl>
