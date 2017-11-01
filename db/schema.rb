@@ -31,14 +31,6 @@ ActiveRecord::Schema.define(version: 20171031231149) do
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
-  create_table "periods", force: :cascade do |t|
-    t.date "start_date_unavailable"
-    t.date "end_date_unavailable"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "properties", force: :cascade do |t|
     t.string "area"
     t.string "title"
@@ -54,20 +46,15 @@ ActiveRecord::Schema.define(version: 20171031231149) do
     t.datetime "updated_at", null: false
     t.string "property_location"
     t.string "property_type"
-    t.integer "unavailable_period_id"
     t.string "photo_file_name"
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer "unavailable_period_id"
     t.string "address"
-<<<<<<< HEAD
+    t.string "owner_email"
     t.integer "owner_id"
     t.index ["owner_id"], name: "index_properties_on_owner_id"
-=======
-    t.string "owner_document"
-    t.string "owner_name"
-    t.string "owner_email"
->>>>>>> master
     t.index ["unavailable_period_id"], name: "index_properties_on_unavailable_period_id"
   end
 
