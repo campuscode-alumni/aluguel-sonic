@@ -63,16 +63,7 @@
       <h3>Propostas:</h3>
       <div class="row-fluid">
         <% @property.proposals.each do |proposal| %>
-          <h4><%= link_to proposal.user_name, proposal %></h4>
-          <dl>
-            <dt>Email</dt> <dd><%= proposal.email %></dd>
-            <dt>Data de inicio</dt> <dd><%= I18n.localize proposal.start_date %></dd>
-            <dt>Data fim</dt> <dd> <%= I18n.localize proposal.end_date %></dd>
-            <dt>Quantidade de pessoas</dt> <dd><%= proposal.total_guests %></dd>
-            <dt>Proposito da Locação</dt> <dd><%= proposal.rent_purpose %></dd>
-            <dt>Valor total</dt> <dd><%= number_to_currency(proposal.total_amount) %></dd>
-            <dt>Status</dt> <dd><%= proposal.status %></dd>
-          </dl>
+          <%= render partial: "/shared/proposal", locals: {proposal: proposal} %>
         <% end %>
       </div>
     </section>

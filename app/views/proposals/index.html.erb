@@ -1,0 +1,12 @@
+<% if @proposals.any? %>
+  <section class="row">
+    <h3>Propostas:</h3>
+    <div class="row-fluid">
+      <% @proposals.each do |props| %>
+        <%= props.each do |proposal| %>
+          <%= render partial: "/shared/proposal", locals: {proposal: proposal} %>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
+<% end %>

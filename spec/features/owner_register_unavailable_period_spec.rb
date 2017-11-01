@@ -13,7 +13,9 @@ feature 'owner register unavailable period for rental' do
     fill_in 'Data inicio', with: '20/12/2017'
     fill_in 'Data fim', with: '28/12/2017'
 
-    click_on 'Cadastrar'
+    within '#submit-unavailable-period' do
+      click_on 'Cadastrar'
+    end
 
     expect(page).to have_css('div.success', text: 'Período cadastrado com sucesso.')
 

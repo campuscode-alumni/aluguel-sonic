@@ -33,6 +33,14 @@ class ProposalsController < ApplicationController
       redirect_to proposal_path
   end
 
+  def index
+    properties = current_owner.properties
+    @proposals = []
+    properties.each do |property|
+      @proposals << property.proposals
+    end
+  end
+
   private
 
   def proposal_params

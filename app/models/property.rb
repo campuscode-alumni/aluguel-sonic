@@ -21,6 +21,7 @@
 
 class Property < ApplicationRecord
   has_many :proposals
+  belongs_to :owner
 
   has_many :unavailable_periods
   validates :title, :property_location, :property_type, :daily_rate, :photo,
@@ -42,5 +43,12 @@ class Property < ApplicationRecord
     else
       daily_rate
     end
+  end
+
+  def owner_name
+    self.owner.name
+  end
+  def owner_document
+    self.owner.document
   end
 end

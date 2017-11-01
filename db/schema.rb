@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031000120) do
+ActiveRecord::Schema.define(version: 20171031231149) do
 
   create_table "owners", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20171031000120) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "document"
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
@@ -50,8 +52,8 @@ ActiveRecord::Schema.define(version: 20171031000120) do
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
     t.string "address"
-    t.string "owner_document"
-    t.string "owner_name"
+    t.integer "owner_id"
+    t.index ["owner_id"], name: "index_properties_on_owner_id"
     t.index ["unavailable_period_id"], name: "index_properties_on_unavailable_period_id"
   end
 

@@ -2,7 +2,19 @@ require 'rails_helper'
 
 feature 'owner register new property' do
   scenario 'successfully' do
+    owner = create(:owner)
+
     visit root_path
+
+    visit new_owner_session_url
+
+    fill_in 'Email', with: owner.email
+    fill_in 'Senha', with: owner.password
+
+    within 'div.actions' do
+      click_on 'Entrar'
+    end
+    
     click_on 'Anunciar um imóvel'
 
     fill_in 'Nome', with: 'Casa de frente pro mar'

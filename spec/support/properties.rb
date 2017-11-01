@@ -1,8 +1,6 @@
 FactoryBot.define do
   factory :property do
     area 150
-    owner_name 'Antonho'
-    owner_document '401.252.145-95'
     address 'Avenida beira mar, nº 666'
     title 'Casa de frente pro mar'
     description 'É uma casa na praia muito cara'
@@ -15,5 +13,6 @@ FactoryBot.define do
     usage_rules 'Não pode cachorro'
     property_location 'Santos, São Paulo'
     property_type 'Casa na praia'
+    owner
   end
 end
