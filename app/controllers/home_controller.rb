@@ -2,6 +2,7 @@ class HomeController < ApplicationController
 
   def index
     @properties = Property.all
+    @proposals = Proposal.where(user: current_user)
   end
 
   def search

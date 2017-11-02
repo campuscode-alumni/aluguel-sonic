@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031234245) do
+ActiveRecord::Schema.define(version: 20171101232445) do
 
   create_table "owners", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -78,7 +78,9 @@ ActiveRecord::Schema.define(version: 20171031234245) do
     t.boolean "agree_with_rules"
     t.integer "status", default: 0
     t.string "user_document"
+    t.integer "user_id"
     t.index ["property_id"], name: "index_proposals_on_property_id"
+    t.index ["user_id"], name: "index_proposals_on_user_id"
   end
 
   create_table "seasons", force: :cascade do |t|
